@@ -637,6 +637,32 @@
     }
     .ex-add-btn:hover { border-color: var(--cyan); color: var(--cyan); }
 
+    /* PLAN LEGEND */
+    .plan-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: var(--black);
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .legend-swatch {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 500px) {
+      .plan-legend { flex-direction: column; gap: 6px; font-size: 13px; }
+    }
+
     /* CART BUTTON */
     .cart-btn {
       display: block;
@@ -817,6 +843,11 @@
       <div id="plan-inner" style="display:none; margin-top:20px;">
         <h2 class="toggle-h2" style="margin-top:8px;" onclick="toggleSection('plan-body', this)"><span>Схема расстановки</span><span class="toggle-arrow">▾</span></h2>
         <div id="plan-body">
+          <div class="plan-legend">
+            <div class="legend-item"><span class="legend-swatch" style="background:#2ECC71"></span>Проходит</div>
+            <div class="legend-item"><span class="legend-swatch" style="background:#F0A500"></span>Только разобранным</div>
+            <div class="legend-item"><span class="legend-swatch" style="background:#E53935"></span>Не проходит</div>
+          </div>
           <canvas id="room-canvas" style="width:100%; border-radius:8px; display:block;"></canvas>
         </div>
       </div>
@@ -1327,20 +1358,6 @@
       ctx.fillText('← ' + roomDm + ' м →', 0, 0); ctx.restore();
     }
 
-    // ── Legend ──
-    const legends = [
-      { col: '#2ECC71', label: 'Проходит' },
-      { col: '#F0A500', label: 'Только разобранным' },
-      { col: '#E53935', label: 'Не проходит / перекрытие' },
-    ];
-    let lx = ox; ctx.textAlign = 'left';
-    legends.forEach(l => {
-      ctx.fillStyle = l.col; ctx.fillRect(lx, oy - 26, 12, 12);
-      ctx.fillStyle = '#444'; ctx.font = '11px Verdana,sans-serif';
-      ctx.fillText(l.label, lx + 16, oy - 16);
-      lx += ctx.measureText(l.label).width + 36;
-    });
-
     // ── Hint ──
     ctx.fillStyle = '#aaa'; ctx.font = '11px Verdana,sans-serif'; ctx.textAlign = 'center';
     ctx.font = Math.round(Math.max(9, CW * 0.014)) + 'px ALS Sirius, Verdana, sans-serif';
@@ -1355,7 +1372,7 @@
     const roomWcm = wallW  || (items.reduce((s,p)=>s+p.w,0) + 80);
     const roomDcm = roomDm ? Math.round(roomDm * 100) : 350;
 
-    const PAD = Math.round(window.innerWidth < 500 ? 36 : 52);
+    const PAD = Math.round(window.innerWidth < 500 ? 24 : 40);
     const CW  = Math.min(820, (canvas.parentElement.clientWidth || window.innerWidth) - 0);
     const rawH = Math.round((CW - PAD * 2) * roomDcm / roomWcm) + PAD * 2;
     const CH  = Math.min(Math.max(rawH, 200), Math.round(window.innerHeight * 0.7));
