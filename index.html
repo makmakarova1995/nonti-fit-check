@@ -682,7 +682,7 @@
       100% { left: 130%; }
     }
     .cart-btn-top    { margin-bottom: 16px; }
-    .cart-btn-bottom { margin-top: 16px; }
+    .cart-btn-bottom { margin-top: 16px; margin-bottom: 24px; }
 
   </style>
 </head>
@@ -726,7 +726,7 @@
         <strong id="total-width">0</strong> см
       </div>
       <div class="wizard-nav">
-        <button class="nav-next" onclick="goStep(2)">Далее →</button>
+        <button type="button" class="nav-next" onclick="goStep(2)">Далее →</button>
       </div>
     </div>
   </div>
@@ -749,8 +749,8 @@
         <button class="ex-add-btn" onclick="addExisting()">+ Добавить существующий предмет</button>
       </div>
       <div class="wizard-nav">
-        <button class="nav-back" onclick="goStep(1)">← Назад</button>
-        <button class="nav-next" onclick="goStep(3)">Далее →</button>
+        <button type="button" class="nav-back" onclick="goStep(1)">← Назад</button>
+        <button type="button" class="nav-next" onclick="goStep(3)">Далее →</button>
       </div>
     </div>
   </div>
@@ -800,8 +800,8 @@
       </div>
 
       <div class="wizard-nav">
-        <button class="nav-back" onclick="goStep(2)">← Назад</button>
-        <button class="nav-next" onclick="checkFit()">Посчитать →</button>
+        <button type="button" class="nav-back" onclick="goStep(2)">← Назад</button>
+        <button type="button" class="nav-next" onclick="checkFit()">Посчитать →</button>
       </div>
     </div>
   </div>
@@ -822,7 +822,7 @@
       </div>
       <a href="https://nonton.ru/cart/" class="cart-btn cart-btn-bottom">Вернуться в корзину →</a>
       <div class="wizard-nav">
-        <button class="nav-back" onclick="goStep(3)">← Изменить параметры</button>
+        <button type="button" class="nav-back" onclick="goStep(3)">← Изменить параметры</button>
       </div>
     </div>
   </div>
