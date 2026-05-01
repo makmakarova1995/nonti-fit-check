@@ -849,6 +849,7 @@
             <div class="legend-item"><span class="legend-swatch" style="background:#E53935"></span>Не проходит</div>
           </div>
           <canvas id="room-canvas" style="width:100%; border-radius:8px; display:block;"></canvas>
+          <button type="button" onclick="downloadPlan()" style="margin-top:12px; width:100%; padding:12px; background:#4DABE2; color:#fff; border:none; border-radius:8px; font-size:15px; font-family:inherit; cursor:pointer;">⬇ Скачать схему</button>
         </div>
       </div>
       <a href="https://nonton.ru/cart/" class="cart-btn cart-btn-bottom">Вернуться в корзину →</a>
@@ -1482,6 +1483,14 @@
   }
 
   addItem();
+
+  function downloadPlan() {
+    const canvas = document.getElementById('room-canvas');
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'план-расстановки.png';
+    a.click();
+  }
 </script>
 </body>
 </html>
